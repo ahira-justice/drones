@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  drones:
+    env_file:
+      - .dockerenv
+    ports:
+      - "33520:80"
+      - "33521:443"

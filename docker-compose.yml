@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  drones:
+    container_name: drones
+    image: ${DOCKER_REGISTRY-}drones:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile

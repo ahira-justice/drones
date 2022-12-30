@@ -31,3 +31,11 @@ springdoc:
 app:
   config:
     max-drones-in-fleet: ${env.MAX_DRONES_IN_FLEET}
+    lightweight-drone-max-weight: ${env.LIGHTWEIGHT_DRONE_MAX_WEIGHT}
+    lightweight-drone-max-weight-unit: ${env.LIGHTWEIGHT_DRONE_MAX_WEIGHT_UNIT}
+    middleweight-drone-max-weight: ${env.MIDDLEWEIGHT_DRONE_MAX_WEIGHT}
+    middleweight-drone-max-weight-unit: ${env.MIDDLEWEIGHT_DRONE_MAX_WEIGHT_UNIT}
+    cruiserweight-drone-max-weight: ${env.CRUISERWEIGHT_DRONE_MAX_WEIGHT}
+    cruiserweight-drone-max-weight-unit: ${env.CRUISERWEIGHT_DRONE_MAX_WEIGHT_UNIT}
+    heavyweight-drone-max-weight: ${env.HEAVYWEIGHT_DRONE_MAX_WEIGHT}
+    heavyweight-drone-max-weight-unit: ${env.HEAVYWEIGHT_DRONE_MAX_WEIGHT_UNIT}

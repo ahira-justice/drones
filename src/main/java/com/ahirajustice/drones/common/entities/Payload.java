@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Getter
@@ -22,6 +23,10 @@ import javax.persistence.OneToOne;
 @AllArgsConstructor
 @Entity(name = "payload")
 public class Payload extends BaseEntity {
+
+    @JoinColumn
+    @ManyToOne
+    private Drone drone;
 
     @Column(nullable = false, unique = true)
     private String name;

@@ -6,6 +6,10 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MedicationRepository extends JpaRepository<Payload, Long>, QuerydslPredicateExecutor<Payload> {
+public interface PayloadRepository extends JpaRepository<Payload, Long>, QuerydslPredicateExecutor<Payload> {
+
+    boolean existsByName(String name);
+
+    boolean existsByCode(String code);
 
 }

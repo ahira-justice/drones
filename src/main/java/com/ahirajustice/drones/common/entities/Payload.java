@@ -36,7 +36,7 @@ public class Payload extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String code;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PayloadType payloadType;
 

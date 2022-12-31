@@ -9,12 +9,10 @@ import java.util.Random;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CommonUtils {
 
-    public static boolean containsSpecialCharactersAndNumbers(String str) {
-        String specialCharactersAndNumbers = "!@#$%&*()'+,-./:;<=>?[]^`{|}0123456789";
-
+    public static boolean containsCharacters(String str, String characters) {
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
-            if (specialCharactersAndNumbers.contains(Character.toString(ch))) {
+            if (characters.contains(Character.toString(ch))) {
                 return true;
             }
         }

@@ -20,7 +20,6 @@ public class DroneController {
 
     private final DroneService droneService;
 
-
     @RequestMapping(path = "", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public DroneViewModel registerDrone(@Valid @RequestBody RegisterDroneRequest request) {

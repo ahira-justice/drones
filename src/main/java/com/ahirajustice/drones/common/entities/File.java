@@ -21,6 +21,6 @@ public class File extends BaseEntity {
     private String reference;
 
     @Column(nullable = false)
-    private int url;
+    private String url;
 
 }

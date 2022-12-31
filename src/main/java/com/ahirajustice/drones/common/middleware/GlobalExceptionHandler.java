@@ -3,6 +3,7 @@ package com.ahirajustice.drones.common.middleware;
 import com.ahirajustice.drones.common.error.Error;
 import com.ahirajustice.drones.common.error.ErrorResponse;
 import com.ahirajustice.drones.common.exceptions.ApplicationDomainException;
+import com.ahirajustice.drones.common.exceptions.ExpectationFailedException;
 import com.ahirajustice.drones.common.exceptions.ForbiddenException;
 import com.ahirajustice.drones.common.exceptions.NotFoundException;
 import com.ahirajustice.drones.common.exceptions.SystemErrorException;
@@ -14,6 +15,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.List;
@@ -40,6 +42,9 @@ public class GlobalExceptionHandler {
         else if (ex instanceof BindException) {
             return handleBindException((BindException) ex);
         }
+        else if (ex instanceof MaxUploadSizeExceededException) {
+            return handleMaxUploadSizeExceededException((MaxUploadSizeExceededException) ex);
+        }
         else {
             return handleUnknownException();
         }
@@ -50,7 +55,8 @@ public class GlobalExceptionHandler {
     }
 
     private ResponseEntity<ErrorResponse> handleNoHandlerFoundException(NoHandlerFoundException ex) {
-        return handleApplicationDomainException(new NotFoundException(String.format("Route %s %s does not exist", ex.getHttpMethod(), ex.getRequestURL())));
+        String msg = String.format("Route %s %s does not exist", ex.getHttpMethod(), ex.getRequestURL());
+        return handleApplicationDomainException(new NotFoundException(msg));
     }
 
     private ResponseEntity<ErrorResponse> handleAccessDeniedException() {
@@ -65,7 +71,13 @@ public class GlobalExceptionHandler {
         return handleApplicationDomainException(new ValidationException(errors));
     }
 
+    private ResponseEntity<ErrorResponse> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex) {
+        String msg = String.format("Uploaded file too large. File upload limit is: %s", ex.getMaxUploadSize());
+        return handleApplicationDomainException(new ExpectationFailedException(msg));
+    }
+
     private ResponseEntity<ErrorResponse> handleUnknownException() {
         return handleApplicationDomainException(new SystemErrorException());
     }
+
 }

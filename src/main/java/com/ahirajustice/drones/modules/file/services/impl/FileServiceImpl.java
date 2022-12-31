@@ -42,4 +42,14 @@ public class FileServiceImpl implements FileService {
         return fileRepository.save(file);
     }
 
+    @Override
+    public File validateFileReference(String reference) {
+        File file = fileRepository.findByReference(reference).orElse(null);
+
+        if (file == null)
+            throw new ValidationException(String.format("File with reference: %s not found", reference));
+
+        return file;
+    }
+
 }
